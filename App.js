@@ -1,12 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, Text, View, SafeAreaView, Pressable } from 'react-native';
+import Homescreen from './screens/Homescreen';
+import Loginscreen from './screens/Loginscreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Userscreen from './screens/Userscreen';
+import Settingscreen from './screens/Settingscreen';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='homescreen'>
+        <Stack.Screen name="homescreen" component={Homescreen} />
+        <Stack.Screen name="loginscreen" component={Loginscreen} />
+        <Stack.Screen name="userscreen" component={Userscreen} />
+        <Stack.Screen name="settingscreen" component={Settingscreen} />
+      </Stack.Navigator> 
+    </NavigationContainer>
+    </>
   );
 }
 
